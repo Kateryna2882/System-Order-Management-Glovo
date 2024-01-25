@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
-    private List<Order> orders;
+    private final List<Order> orders;
 
     public OrderService() {
         this.orders = new ArrayList<>();
