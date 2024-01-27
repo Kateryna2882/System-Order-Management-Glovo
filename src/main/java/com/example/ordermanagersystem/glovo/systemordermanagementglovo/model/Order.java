@@ -1,13 +1,21 @@
 package com.example.ordermanagersystem.glovo.systemordermanagementglovo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Data
+@AllArgsConstructor
 public class Order {
-    private int orderId;
-    private List<Product>products;
 
-    public Order(int orderId){
+    private int orderId;
+    private List<Product> products;
+
+    public Order(int orderId) {
         this.orderId = orderId;
         this.products = new ArrayList<>();
     }
@@ -16,12 +24,6 @@ public class Order {
         products.add(product);
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-    public int getOrderId() {
-        return orderId;
-    }
     public double calculateTotalPrice() {
         double totalPrice = 0.0;
         for (Product product : products) {
@@ -29,6 +31,7 @@ public class Order {
         }
         return totalPrice;
     }
+
     public void displayOrderInfo() {
         System.out.println("Order ID: " + orderId);
         System.out.println("Products:");
@@ -37,4 +40,8 @@ public class Order {
         }
         System.out.println("Total Price: $" + calculateTotalPrice());
     }
+
+    private String name;
+
+    private String customer;
 }

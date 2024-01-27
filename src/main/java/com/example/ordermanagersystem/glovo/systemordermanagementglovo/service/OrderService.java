@@ -1,10 +1,12 @@
 package com.example.ordermanagersystem.glovo.systemordermanagementglovo.service;
+
 import com.example.ordermanagersystem.glovo.systemordermanagementglovo.model.Order;
 import com.example.ordermanagersystem.glovo.systemordermanagementglovo.model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class OrderService {
     private final List<Order> orders;
 
@@ -28,14 +30,22 @@ public class OrderService {
     }
 
     public void updateOrder(Order updatedOrder) {
+        int orderId = updatedOrder.getOrderId();
+        Order existingOrder = getOrderById(orderId);
 
+        if (existingOrder != null) {
+            // Видаляємо старе замовлення
+            orders.remove(existingOrder);
+
+            // Додаємо оновлене замовлення
+            orders.add(updatedOrder);
+        } else {
+            System.out.println("Order with ID " + orderId + " not found. Cannot update.");
+        }
     }
+
     public void deleteOrder(Order order) {
         orders.remove(order);
-    }
-
-    public void addProductToOrder(Order order, Product product) {
-        order.addProduct(product);
     }
 
 
@@ -49,4 +59,17 @@ public class OrderService {
             System.out.println("---------------");
         }
     }
+
+    public List<Order> getAllOrders() {
+        return new ArrayList<>(orders);
+    }
+    public void addProductToOrder(Order order, Product product) {
+        if (order == null || product == null) {
+            return;
+        }
+
+        order.addProduct(product);
+    }
+
 }
+

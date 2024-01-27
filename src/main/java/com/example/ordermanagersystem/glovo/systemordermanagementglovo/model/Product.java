@@ -1,6 +1,15 @@
 package com.example.ordermanagersystem.glovo.systemordermanagementglovo.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Data
+@Setter
 public class Product {
+    private int id;
         private String name;
         private double price;
 
@@ -9,14 +18,7 @@ public class Product {
             this.price = price;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public double getPrice() {
-            return price;
-        }
-        public void displayProductInfo() {
+    public void displayProductInfo() {
             System.out.println("Product: " + name);
             System.out.println("Price: $" + price);
         }
